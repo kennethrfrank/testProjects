@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app ="myModule">
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+</head>
+	<body ng-controller="MainController">
+		<h1>Hello </h1>
+		
+			<div >
+						{{message}}
+						FirstName: {{my.firstName}}
+						MiddleName: {{my.middleName}}
+						LastName: {{my.lastName}}
+						<br>
+						<!--{{user.name}} {{user.location}}-->
+						<br>
+						{{error}}
+
+
+			</div>
+			
+			<form name="searchUser" ng-submit="search(username)">
+				<input type="search" required placeholder="Username to find" ng-model="username">
+				<input type="submit" Value="Search" ng-click="search(username)">
+			</form>
+			<div>
+				<h2> Retrieved Username: {{ username }}</h2>
+				<img ng-src ="http://www.gravatar.com/avatar/{{user.gravatar_id}}" style= "width: 40px; height: auto;">
+							<h2> Retrieved name: {{ user.name }}</h2>
+			</div>
+
+
+			<table>
+				<thead>
+					<tr>
+						<th>Name</th>
+
+						<th>Stars</th>
+						<th>Language</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="repo in repos">
+						<td>{{repo.name}}</td>
+						<td>{{repo.stargazers_count | number}}</td>
+						<td>{{repo.language}}</td>
+					</tr>
+				</tbody>
+			</table>
+	
+	
+		<script src = "script.js"></script>
+	</body>
+</html>
