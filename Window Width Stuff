@@ -1,0 +1,41 @@
+Window Width Stuff
+<script type="text/javascript">
+
+        jQuery(document).ready(function () {
+
+            @Html.Raw("$.aveti.session.SetSessionID('" + ViewBag.SessionID + "');")
+
+            var appNameSpace = (jQuery.application) ? jQuery.application.namespace() : '',
+                rEvent = jQuery.Event('preventfouc-complete.' + appNameSpace),  // notify listeners we have completed
+                rEventData = (jQuery.application) ? $.application.isMobile() : undefined;
+
+            $('body').removeClass('hidden');
+
+            if (!window.scrollBarWidth) {
+
+                var rBodyOverflow = document.body.style.overflow, // save overflow style
+                    width;
+
+                /* hide overflow and get height*/
+                document.body.style.overflow = 'hidden';
+                width = document.body.clientWidth;
+
+                /* show scroll bars and calculate the difference*/
+                document.body.style.overflow = 'scroll';
+                width -= document.body.clientWidth;
+
+                /* insurance */
+                if (!width) width = document.body.offsetWidth - document.body.clientWidth;
+
+                /* reset overflow*/
+                document.body.style.overflow = rBodyOverflow;
+
+                window.scrollBarWidth = width; // save it as window variable
+
+            }
+
+            $(document).trigger(rEvent, [rEventData]);
+
+        });
+
+    </script>
